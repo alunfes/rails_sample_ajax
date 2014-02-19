@@ -1,0 +1,5 @@
+$("#original_"+"<%= @id %>").hide();
+$("#ajax_area_"+"<%= @id %>").show();
+$("#ajax_area_"+"<%= @id %>").html(
+  "<%= escape_javascript(render :partial=>'addGood', :object=>@good) %>"
+);

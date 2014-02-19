@@ -1,0 +1,42 @@
+<h1>Listing items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Good</th>
+      <th>Bad</th>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each_with_index do |item, i| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td>
+          <div id= <%= "original_" + item.id.to_s %>>
+            <%= item.good %>
+          </div>
+          <div id= <%= "ajax_area_" + item.id.to_s %>>
+            <%= render :partial => 'addGood', :object => @good %>
+          </div>
+        </td>
+        <td><%= item.bad %></td>
+        <td><%= item.id %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= button_to "Good", {:action => "addGood", :id => item.id}, {:remote => true} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>
